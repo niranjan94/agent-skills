@@ -119,6 +119,28 @@ Present a final summary of all changes made:
 - How many were updated to newer versions
 - Any actions that couldn't be resolved (and why)
 
+### Step 9: Offer a conventional commit
+
+After presenting the report, offer to create a single, clean [Conventional Commits](https://www.conventionalcommits.org) commit for the changes. Propose a commit message based on what was done. The commit type should reflect the nature of the change:
+
+- If only pinning (no version bumps): `ci: pin github actions to commit SHAs`
+- If versions were bumped: `ci: update and pin github actions to commit SHAs`
+- If a mix, lean toward the more descriptive message
+
+Include a body that lists the actions that were changed. For example:
+
+```
+ci: pin github actions to commit SHAs
+
+Pin external GitHub Actions to commit SHAs for supply chain security.
+
+Actions pinned:
+- actions/checkout@v6.0.2
+- docker/setup-buildx-action@v4.0.0
+```
+
+Use the AskUserQuestion tool to confirm with the user before committing. Show them the proposed message and let them adjust it. If they decline, that's fine -- the file changes are already applied.
+
 ## Edge cases
 
 - **Actions with no GitHub releases**: Fall back to tags. If no tags either, warn the user and skip.
